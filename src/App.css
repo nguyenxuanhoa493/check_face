@@ -1,0 +1,4273 @@
+:root {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-card: #1e293b;
+  --border-color: #334155;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --success: #10b981;
+  --success-bg: rgba(16, 185, 129, 0.15);
+  --danger: #ef4444;
+  --danger-bg: rgba(239, 68, 68, 0.15);
+  --warning: #f59e0b;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 20px 60px 20px;
+}
+
+/* HEADER */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 24px;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-box {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.logo-icon {
+  color: white;
+}
+
+.header-brand h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+  background: rgba(30, 41, 59, 0.7);
+}
+
+.status-pill .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-pill.ready {
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #34d399;
+}
+.status-pill.ready .dot {
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.status-pill.loading {
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #fbbf24;
+}
+.status-pill.loading .dot {
+  background: #f59e0b;
+  animation: pulse 1.5s infinite;
+}
+
+/* Thanh Tiến Độ Tải Model AI Chi Tiết */
+.status-pill.loading-detailed {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 5px 12px;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.15);
+  min-width: 320px;
+}
+
+.loading-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.76rem;
+  color: #fbbf24;
+}
+
+.loading-title-row strong {
+  color: #fef08a;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.loading-speed-badge,
+.loading-eta-badge {
+  font-size: 0.67rem;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.loading-eta-badge {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.3);
+  margin-left: auto;
+}
+
+.loading-progress-bar {
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(51, 65, 85, 0.6);
+  overflow: hidden;
+  position: relative;
+}
+
+.loading-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f59e0b, #38bdf8);
+  box-shadow: 0 0 8px #38bdf8;
+  transition: width 0.15s ease-out;
+}
+
+/* Status Pill Khi Đã Sẵn Sàng (Kèm chỉ số tài nguyên mini) */
+.status-pill.ready-detailed {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34d399;
+}
+
+.ready-text {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.meta-divider {
+  color: #475569;
+  font-size: 0.8rem;
+}
+
+.resource-pill-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.fps-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* Status Pill Gọn Gàng 1 Dòng Duy Nhất (Chỉ số hệ thống) */
+.status-pill.status-metrics-single {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+}
+
+.single-metrics-text {
+  font-size: 0.78rem;
+  color: #38bdf8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+/* NAV TABS */
+.nav-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* CARDS COMMON */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.card-header h2,
+.card-header h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-blue {
+  color: #3b82f6;
+}
+
+/* BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+
+.btn-secondary {
+  background: #334155;
+  color: #f8fafc;
+}
+.btn-secondary:hover:not(:disabled) {
+  background: #475569;
+}
+
+.btn-danger {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+.btn-danger:hover {
+  background: rgba(239, 68, 68, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #64748b;
+}
+
+.btn-icon {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  border-radius: 6px;
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+}
+.btn-icon:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* DEMO TAB LAYOUT */
+.demo-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 992px) {
+  .demo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CAMERA VIEWPORT */
+.viewport-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #020617;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-stream {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1); /* Mirror webcam */
+}
+
+.overlay-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(-1); /* Mirror canvas to align with mirrored video */
+  pointer-events: none;
+  z-index: 2;
+}
+
+.empty-viewport {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+  color: var(--text-muted);
+  background: #020617;
+  z-index: 5;
+}
+
+.empty-icon {
+  color: #475569;
+  margin-bottom: 12px;
+}
+
+.empty-viewport p {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.empty-viewport span {
+  font-size: 0.85rem;
+  max-width: 380px;
+}
+
+/* SIDE-BY-SIDE LAYOUT FOR TAB 2 (ENROLL) */
+.demo-grid.enroll-side-by-side {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.demo-grid.enroll-side-by-side .card {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.demo-grid.enroll-side-by-side .viewport-wrapper {
+  aspect-ratio: 16 / 10;
+  max-height: 430px;
+}
+
+@media (max-width: 900px) {
+  .demo-grid.enroll-side-by-side {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Card Camera ở màn Nạp: Giảm padding để nhìn rộng hơn */
+.camera-card {
+  padding: 8px 10px;
+}
+
+.camera-card .card-header {
+  margin-bottom: 6px;
+  padding: 0 2px;
+}
+
+.camera-card .card-header h2 {
+  font-size: 0.98rem;
+}
+
+/* Nút duy nhất chính giữa camera ở màn Nạp 5 ảnh */
+.enroll-center-action-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.btn-center-enroll {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 38px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #0284c7);
+  border: 2px solid rgba(56, 189, 248, 0.7);
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.6), 0 8px 24px rgba(0, 0, 0, 0.5);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.5px;
+}
+
+.btn-center-enroll:hover:not(:disabled) {
+  transform: scale(1.06);
+  background: linear-gradient(135deg, #1d4ed8, #0369a1);
+  box-shadow: 0 0 42px rgba(56, 189, 248, 0.85), 0 12px 28px rgba(0, 0, 0, 0.6);
+  border-color: #38bdf8;
+}
+
+.btn-center-enroll:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-center-enroll:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+
+.btn-icon-pulse {
+  color: #fef08a;
+  animation: pulse 1.8s infinite;
+}
+
+.live-verification-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  backdrop-filter: blur(8px);
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.live-verification-badge.match {
+  background: rgba(16, 185, 129, 0.9);
+  color: white;
+}
+
+.live-verification-badge.mismatch {
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+}
+
+.live-verification-badge.spoof {
+  background: rgba(220, 38, 38, 0.95);
+  color: white;
+  border: 2px solid #fecaca;
+  animation: pulse 1s infinite;
+}
+
+.live-verification-badge.no_face {
+  background: rgba(245, 158, 11, 0.85);
+  color: #1e293b;
+}
+
+.live-verification-badge.idle {
+  background: rgba(30, 41, 59, 0.85);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.camera-footer {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.file-upload-label {
+  cursor: pointer;
+}
+
+.display-toggles {
+  display: flex;
+  gap: 16px;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+/* SIDEBAR COLUMN */
+.sidebar-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* REFERENCE CARD */
+.enrolled-face-info {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.enrolled-thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid #3b82f6;
+  background: #0f172a;
+}
+
+.enrolled-details {
+  flex: 1;
+}
+
+.enrolled-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.enrolled-meta {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.highlight {
+  color: #38bdf8;
+  font-family: monospace;
+}
+
+.status-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-top: 6px;
+}
+
+.status-tag.active {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.no-enrolled-box {
+  padding: 16px;
+  text-align: center;
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 8px;
+  border: 1px dashed var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.enrolled-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.enrolled-item-card {
+  position: relative;
+  background: #0f172a;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.enrolled-thumb {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #1e293b;
+}
+
+.enrolled-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.item-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #f8fafc;
+}
+
+.item-meta {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.btn-delete-single {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.btn-delete-single:hover {
+  background: #ef4444;
+}
+
+.no-enrolled-box p {
+  color: var(--text-main);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* METRICS CARD */
+.metric-row {
+  margin-bottom: 18px;
+}
+
+.metric-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.metric-value {
+  font-size: 1.25rem;
+  font-family: monospace;
+  color: #38bdf8;
+}
+
+.progress-track {
+  position: relative;
+  height: 12px;
+  background: #0f172a;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.progress-fill {
+  height: 100%;
+  transition: width 0.1s linear, background-color 0.2s ease;
+}
+
+.progress-fill.match {
+  background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.progress-fill.mismatch {
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+}
+
+.threshold-marker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #f8fafc;
+  box-shadow: 0 0 6px white;
+}
+
+.progress-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.threshold-text {
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+.threshold-control {
+  margin-bottom: 18px;
+}
+
+.threshold-control label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.875rem;
+  margin-bottom: 8px;
+}
+
+.hint-text {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.threshold-control input[type="range"] {
+  width: 100%;
+  accent-color: #3b82f6;
+  cursor: pointer;
+}
+
+.metric-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-color);
+}
+
+.detail-item {
+  background: #0f172a;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-item .label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.detail-item .val {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+/* LIVENESS CARD */
+.liveness-desc {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.liveness-box {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: #0f172a;
+}
+
+.liveness-box.passed {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.liveness-box.passed .liveness-status-icon {
+  color: #34d399;
+}
+
+.liveness-box.pending .liveness-status-icon {
+  color: #f59e0b;
+}
+
+.liveness-feedback {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* COMPARISON TAB */
+.comparison-section,
+.security-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section-title h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.section-title p {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: top;
+}
+
+.comparison-table th {
+  background: #0f172a;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.comparison-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.highlight-row {
+  background: rgba(59, 130, 246, 0.08) !important;
+}
+
+.badge-chip {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  margin-top: 4px;
+}
+
+.badge-chip.secondary {
+  background: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
+}
+
+.badge-chip.security {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.tag.green {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.tag.orange {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+.guide-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.guide-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.guide-card h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #f8fafc;
+}
+
+.guide-card p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* SECURITY TAB */
+.threats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.threat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.threat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.threat-icon.danger {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.threat-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.threat-card p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.solution-architecture {
+  margin-top: 10px;
+}
+
+.steps-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.step-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: #0f172a;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.step-content strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  color: #f8fafc;
+}
+
+.step-content p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.alert-error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #f87171;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  font-size: 0.875rem;
+}
+
+/* ========================================================
+   TELEMETRY DASHBOARD (TAB LIVE TEST DETECT)
+   ======================================================== */
+.telemetry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.telemetry-box {
+  background: #0f172a;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.telemetry-box.full-width {
+  grid-column: 1 / -1;
+}
+
+.telemetry-lbl {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.telemetry-val {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #f8fafc;
+  font-family: monospace;
+}
+
+.telemetry-sub {
+  font-size: 0.7rem;
+  color: #64748b;
+  font-family: monospace;
+}
+
+.telemetry-lbl-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.angles-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.angle-badge {
+  flex: 1;
+  background: #1e293b;
+  padding: 6px 8px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.angle-badge span {
+  color: var(--text-muted);
+}
+
+.angle-badge strong {
+  color: #38bdf8;
+  font-family: monospace;
+}
+
+.no-telemetry-box {
+  padding: 18px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 8px;
+  border: 1px dashed var(--border-color);
+}
+
+.no-telemetry-box p {
+  color: #f8fafc;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* SIMILARITY MATRIX LIST */
+.similarity-matrix-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.matrix-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #0f172a;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 6px 10px;
+  transition: all 0.2s;
+}
+
+.matrix-row.best-match {
+  border-color: #0284c7;
+  background: rgba(2, 132, 199, 0.12);
+}
+
+.matrix-thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+  background: #1e293b;
+}
+
+.matrix-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.matrix-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.matrix-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #f8fafc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+.best-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(2, 132, 199, 0.3);
+  color: #38bdf8;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.matrix-bar-wrap {
+  width: 100%;
+  height: 6px;
+  background: #1e293b;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.matrix-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.15s ease;
+}
+
+.matrix-bar-fill.pass {
+  background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.matrix-bar-fill.fail {
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+}
+
+.matrix-score {
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: monospace;
+  min-width: 50px;
+  text-align: right;
+}
+
+.matrix-score.pass {
+  color: #34d399;
+}
+
+.matrix-score.fail {
+  color: #f87171;
+}
+
+/* ENROLL TAB STYLES */
+.enroll-actions-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.enrolled-cards-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.enrolled-card-item {
+  position: relative;
+  background: #0f172a;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.enrolled-img-large {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: #1e293b;
+}
+
+.enrolled-card-body {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.enrolled-card-body strong {
+  font-size: 0.85rem;
+  color: #f8fafc;
+}
+
+.enrolled-card-body .meta {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.enrolled-card-body .meta.time {
+  color: #64748b;
+}
+
+.btn-delete-card {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.btn-delete-card:hover {
+  background: #ef4444;
+}
+
+/* ========================================================
+   ENROLL TAB (SIDE-BY-SIDE WEBCAM & GALLERY)
+   ======================================================== */
+.card-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 0.75rem;
+}
+
+.auto-enroll-overlay {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  background: rgba(15, 23, 42, 0.94);
+  border: 1.5px solid #0284c7;
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 20;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  animation: slideUp 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auto-enroll-overlay.condition-met {
+  border-color: #10b981;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
+}
+
+.auto-enroll-overlay.condition-waiting {
+  border-color: #f59e0b;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.auto-enroll-indicator {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.spin-icon-ok {
+  color: #34d399;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.spin-icon-guide {
+  color: #fbbf24;
+  flex-shrink: 0;
+  margin-top: 2px;
+  animation: pulse 1.5s infinite;
+}
+
+.auto-enroll-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hint-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hint-header-row strong {
+  font-size: 0.95rem;
+  color: #f8fafc;
+}
+
+.step-counter-pill {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.angle-status-line {
+  font-size: 0.78rem;
+  font-family: monospace;
+  color: #94a3b8;
+}
+
+.auto-enroll-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #1e293b;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.auto-enroll-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+  border-radius: 4px;
+  transition: width 0.1s linear;
+}
+
+.auto-enroll-progress-fill.active {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.auto-enroll-feedback-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: #cbd5e1;
+}
+
+.auto-enroll-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-text-sm {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-text-sm:hover {
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.btn-text-sm.danger {
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.btn-text-sm.danger:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.enroll-hints-box {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px dashed var(--border-color);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+.enroll-hints-box strong {
+  color: #f8fafc;
+}
+
+.enrolled-gallery-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.enrolled-gallery-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #0f172a;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px 12px;
+  transition: all 0.2s ease;
+}
+
+.enrolled-gallery-card:hover {
+  border-color: #475569;
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.gallery-thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid #38bdf8;
+  background: #1e293b;
+  flex-shrink: 0;
+}
+
+.gallery-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.gallery-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #f8fafc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gallery-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.badge-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  font-family: monospace;
+}
+
+.badge-tag.green {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.gallery-time {
+  font-size: 0.68rem;
+  color: #64748b;
+}
+
+.btn-delete-item {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #64748b;
+  border-radius: 6px;
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.btn-delete-item:hover {
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* ============================================================
+   INSIDE CAMERA HUD (MŨI TÊN & KHUNG ĐỊNH HƯỚNG GÓC CHUYỂN MÀU)
+   ============================================================ */
+.inside-cam-hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Target trung tâm (Nhìn thẳng / Cười nhẹ) */
+.hud-target {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 24px 18px 24px;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(56, 189, 248, 0.45);
+  border-radius: 16px;
+  color: #38bdf8;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  animation: hudCenterPulse 1.8s infinite ease-in-out;
+  transition: all 0.2s ease;
+}
+
+.hud-target.met {
+  border-color: #10b981;
+  background: rgba(6, 78, 59, 0.85);
+  color: #34d399;
+  box-shadow: 0 0 28px rgba(16, 185, 129, 0.6);
+  transform: scale(1.06);
+}
+
+/* Mũi tên định hướng góc quay đầu */
+.hud-arrow {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 22px 18px 22px;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(56, 189, 248, 0.45);
+  border-radius: 16px;
+  color: #38bdf8;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease;
+}
+
+/* Lớp tiến trình tự động lấp đầy (progress fill) theo đúng hướng của mũi tên */
+.hud-progress-fill {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 1. Mũi tên TRÁI: Dải tiến độ chạy dồn sang TRÁI (từ phải qua trái) */
+.hud-arrow.left .hud-progress-fill {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: auto;
+  background: linear-gradient(270deg, rgba(56, 189, 248, 0.15) 0%, rgba(16, 185, 129, 0.55) 100%);
+  transition: width 0.12s linear;
+}
+
+/* 2. Mũi tên PHẢI: Dải tiến độ chạy dồn sang PHẢI (từ trái qua phải) */
+.hud-arrow.right .hud-progress-fill {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: auto;
+  background: linear-gradient(90deg, rgba(56, 189, 248, 0.15) 0%, rgba(16, 185, 129, 0.55) 100%);
+  transition: width 0.12s linear;
+}
+
+/* 3. Mũi tên NGẨNG LÊN: Dải tiến độ chạy dồn từ DƯỚI LÊN TRÊN */
+.hud-arrow.up .hud-progress-fill {
+  bottom: 0;
+  top: auto;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: linear-gradient(0deg, rgba(56, 189, 248, 0.15) 0%, rgba(16, 185, 129, 0.55) 100%);
+  transition: height 0.12s linear;
+}
+
+/* Trạng thái khi đạt mục tiêu */
+.hud-arrow.met .hud-progress-fill {
+  background: rgba(16, 185, 129, 0.45);
+}
+
+/* Nội dung Icon và Chữ nằm nổi chính giữa, hoàn toàn đối xứng */
+.hud-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+/* Vị trí neo mép trái */
+.hud-arrow.left {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: hudArrowLeftBounce 1.4s infinite ease-in-out;
+}
+
+/* Vị trí neo mép phải */
+.hud-arrow.right {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: hudArrowRightBounce 1.4s infinite ease-in-out;
+}
+
+/* Vị trí neo mép trên */
+.hud-arrow.up {
+  position: absolute;
+  top: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: hudArrowUpBounce 1.4s infinite ease-in-out;
+}
+
+.hud-arrow.met {
+  border-color: #10b981;
+  background: rgba(6, 78, 59, 0.85);
+  color: #34d399;
+  box-shadow: 0 0 28px rgba(16, 185, 129, 0.65);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.hud-arrow.up.met {
+  transform: translateX(-50%) scale(1.08);
+}
+
+.hud-arrow-icon {
+  filter: drop-shadow(0 2px 10px currentColor);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.hud-arrow.met .hud-arrow-icon {
+  filter: drop-shadow(0 2px 12px rgba(16, 185, 129, 0.8));
+}
+
+/* Animations cho các mũi tên hướng dẫn */
+@keyframes hudArrowLeftBounce {
+  0%, 100% {
+    transform: translateY(-50%) translateX(0);
+  }
+  50% {
+    transform: translateY(-50%) translateX(-8px);
+  }
+}
+
+@keyframes hudArrowRightBounce {
+  0%, 100% {
+    transform: translateY(-50%) translateX(0);
+  }
+  50% {
+    transform: translateY(-50%) translateX(8px);
+  }
+}
+
+@keyframes hudArrowUpBounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+
+@keyframes hudCenterPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+}
+
+/* Thanh tiến trình giữ ổn định nằm sát đáy camera */
+.hud-bottom-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: rgba(15, 23, 42, 0.75);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hud-bottom-fill {
+  height: 100%;
+  background: #0284c7;
+  transition: width 0.1s linear;
+}
+
+.hud-bottom-fill.active {
+  background: linear-gradient(90deg, #10b981, #34d399);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.8);
+}
+
+.btn-sm-text {
+  background: rgba(51, 65, 85, 0.6);
+  border: 1px solid #475569;
+  color: #cbd5e1;
+  font-size: 0.74rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-sm-text:hover {
+  background: #475569;
+  color: #ffffff;
+}
+
+.btn-sm-text.danger {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #f87171;
+}
+
+.btn-sm-text.danger:hover {
+  background: rgba(239, 68, 68, 0.3);
+  color: #ffffff;
+}
+
+/* ============================================================
+   ACTIVE LIVENESS (CHỐNG BYPASS MÀN HÌNH ĐIỆN THOẠI BẰNG CHỚP MẮT)
+   ============================================================ */
+.live-verification-badge.wait_blink {
+  border-color: rgba(245, 158, 11, 0.6);
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.25);
+  animation: badgePulseAmber 1.8s infinite ease-in-out;
+}
+
+@keyframes badgePulseAmber {
+  0%, 100% {
+    border-color: rgba(245, 158, 11, 0.4);
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+  }
+  50% {
+    border-color: rgba(245, 158, 11, 0.85);
+    box-shadow: 0 0 24px rgba(245, 158, 11, 0.45);
+  }
+}
+
+.blink-anim-icon {
+  animation: eyeBlinkPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes eyeBlinkPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 1;
+    color: #fde047;
+  }
+}
+
+/* Prompt chớp mắt trực quan neo trên camera */
+.hud-blink-hint {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 14;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(245, 158, 11, 0.6);
+  border-radius: 30px;
+  color: #fbbf24;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 16px rgba(245, 158, 11, 0.3);
+  animation: hudBlinkFloat 2s infinite ease-in-out;
+}
+
+.hud-blink-hint span {
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #fef08a;
+}
+
+.hud-blink-icon-pulse {
+  animation: eyeBlinkPulse 1.2s infinite ease-in-out;
+  color: #f59e0b;
+}
+
+@keyframes hudBlinkFloat {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+
+/* Card eKYC Active Liveness */
+.liveness-guard-card {
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.liveness-toggle-box {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.toggle-switch-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-switch-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: #0284c7;
+  cursor: pointer;
+}
+
+.toggle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.toggle-info strong {
+  font-size: 0.88rem;
+  color: #f8fafc;
+}
+
+.toggle-info span {
+  font-size: 0.76rem;
+  color: #94a3b8;
+}
+
+/* ============================================================
+   FULL SCREEN INSPECTOR COCKPIT (NO SCROLL, 100VH)
+   ============================================================ */
+.app-container.full-live-mode {
+  max-width: 100vw;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 10px 16px 12px 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container.full-live-mode .app-header {
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+
+.app-container.full-live-mode .header-brand .logo-box {
+  width: 34px;
+  height: 34px;
+}
+
+.app-container.full-live-mode .header-brand h1 {
+  font-size: 1.15rem;
+}
+
+.app-container.full-live-mode .header-brand .subtitle {
+  display: none;
+}
+
+.app-container.full-live-mode .nav-tabs {
+  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+
+.app-container.full-live-mode .tab-btn {
+  padding: 5px 12px;
+  font-size: 0.8rem;
+}
+
+/* Grid 3 cột buồng lái thời gian thực: Cột 1 Telemetry (Trái) | Cột 2 Cam Live (Giữa RỘNG) | Cột 3 Security (Phải) */
+.inspector-grid.full-screen-grid {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr) 295px;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+  height: calc(100vh - 96px);
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.live-column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Cột 1 (Trái): Tối ưu full chiều cao */
+.col-telemetry .compact-metrics {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cột 3 (Phải): Khớp gọn không tràn */
+.col-security {
+  overflow: hidden;
+}
+
+.col-security .compact-metrics {
+  flex-shrink: 0;
+}
+
+/* Compact Card base */
+.compact-cam-card,
+.compact-matrix-card,
+.compact-thumbs-card,
+.compact-metrics {
+  margin-bottom: 0;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-radius: 8px;
+}
+
+.compact-header {
+  padding-bottom: 5px;
+  margin-bottom: 6px;
+}
+
+.compact-header h2,
+.compact-header h3 {
+  font-size: 0.86rem;
+  font-weight: 600;
+  gap: 5px;
+}
+
+/* Cột Giữa: Camera Card mở rộng toàn bộ không gian */
+.col-camera {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  height: 100%;
+}
+
+.compact-cam-card {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.compact-viewport {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #090d16;
+  border: 1px solid rgba(51, 65, 85, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compact-viewport .video-stream {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.compact-viewport .overlay-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.compact-empty {
+  padding: 16px;
+}
+
+.compact-empty .empty-icon {
+  margin-bottom: 6px;
+  color: #475569;
+}
+
+.compact-empty p {
+  font-size: 0.88rem;
+  color: #cbd5e1;
+}
+
+.compact-empty span {
+  font-size: 0.74rem;
+  color: #64748b;
+}
+
+/* Thanh thông báo xác thực nằm bên ngoài camera */
+.live-verification-banner {
+  margin-top: 6px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  text-align: center;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.live-verification-banner.match {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.55);
+  color: #34d399;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.15);
+}
+
+.live-verification-banner.wait_blink {
+  background: rgba(245, 158, 11, 0.18);
+  border-color: rgba(245, 158, 11, 0.65);
+  color: #fbbf24;
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.2);
+  animation: badgePulseAmber 1.6s infinite ease-in-out;
+}
+
+.live-verification-banner.wait_blink:hover {
+  background: rgba(245, 158, 11, 0.25);
+  border-color: rgba(245, 158, 11, 0.9);
+}
+
+.live-verification-banner.spoof {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.55);
+  color: #f87171;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.15);
+}
+
+.live-verification-banner.mismatch {
+  background: rgba(244, 63, 94, 0.15);
+  border-color: rgba(244, 63, 94, 0.5);
+  color: #fb7185;
+}
+
+.live-verification-banner.no_face {
+  background: rgba(100, 116, 139, 0.15);
+  border-color: rgba(100, 116, 139, 0.45);
+  color: #94a3b8;
+}
+
+.live-verification-banner.idle {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.45);
+  color: #60a5fa;
+}
+
+.compact-hud span {
+  font-size: 0.8rem;
+}
+
+.compact-footer {
+  padding-top: 8px;
+  margin-top: 6px;
+}
+
+.compact-footer .action-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.compact-toggles {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.compact-toggles .toggle-label {
+  font-size: 0.76rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #cbd5e1;
+}
+
+.compact-toggles .toggle-label input {
+  width: 14px;
+  height: 14px;
+  accent-color: #3b82f6;
+}
+
+/* Thumbnails Ảnh mẫu (Không tiêu đề, show to rõ) */
+.compact-thumbs-card {
+  flex-shrink: 0;
+  padding: 8px 10px;
+  background: rgba(15, 23, 42, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.enrolled-all-thumbs-grid,
+.enrolled-5thumbs-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  margin-top: 0;
+  max-height: unset;
+  overflow-x: auto;
+  scrollbar-width: none;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 2px;
+}
+
+.enrolled-all-thumbs-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.thumb-slot {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: 90px;
+  height: 90px;
+  flex: 0 0 90px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.85);
+  border: 2px solid rgba(51, 65, 85, 0.6);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thumb-slot.empty {
+  border: 2px dashed rgba(51, 65, 85, 0.6);
+  background: rgba(15, 23, 42, 0.3);
+}
+
+.thumb-slot.empty .slot-num {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.thumb-slot.filled:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.thumb-slot.pass {
+  border-color: rgba(16, 185, 129, 0.8);
+}
+
+.thumb-slot.best {
+  border-color: #38bdf8;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.45);
+  transform: scale(1.04);
+}
+
+.thumb-slot .thumb-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.thumb-slot .thumb-badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background: rgba(56, 189, 248, 0.95);
+  color: #0b132b;
+  border-radius: 5px;
+  padding: 2px 4px;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.thumb-slot .thumb-score-badge {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  backdrop-filter: blur(6px);
+}
+
+.thumb-slot .thumb-score-badge.pass {
+  background: rgba(16, 185, 129, 0.85);
+  color: #ffffff;
+}
+
+.thumb-slot .thumb-score-badge.fail {
+  background: rgba(239, 68, 68, 0.8);
+  color: #ffffff;
+}
+
+/* Cột 1: Compact Matrix Card */
+.compact-matrix-card {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.compact-matrix-list {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 4px;
+}
+
+.compact-matrix-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.compact-matrix-list::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 4px;
+}
+
+.compact-matrix-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(51, 65, 85, 0.45);
+  border-radius: 6px;
+}
+
+.compact-matrix-row.best-match {
+  border-color: rgba(56, 189, 248, 0.6);
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.compact-matrix-row .matrix-thumb {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.compact-matrix-row .matrix-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.compact-matrix-row .matrix-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.compact-matrix-row .matrix-name {
+  font-size: 0.74rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #e2e8f0;
+}
+
+.compact-matrix-row .best-tag {
+  font-size: 0.65rem;
+  padding: 1px 5px;
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.compact-matrix-row .matrix-bar-wrap {
+  width: 100%;
+  height: 4px;
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.compact-matrix-row .matrix-score {
+  font-size: 0.78rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  min-width: 44px;
+  text-align: right;
+}
+
+.compact-empty-box {
+  padding: 12px;
+  text-align: center;
+}
+
+.compact-empty-box p {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin-bottom: 2px;
+}
+
+.compact-empty-box span {
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+/* Biểu đồ Telemetry & Tần suất Xác thực (Cột Trái) */
+.telemetry-chart-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.live-fps-badge {
+  font-size: 0.72rem;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34d399;
+  font-weight: 700;
+}
+
+.chart-legend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 2px;
+  font-size: 0.68rem;
+  color: #94a3b8;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legend-item i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.chart-canvas-wrap {
+  width: 100%;
+  height: 105px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  background: #090d16;
+  position: relative;
+}
+
+.telemetry-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.telemetry-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.stat-pill {
+  padding: 4px 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 6px;
+  border: 1px solid rgba(51, 65, 85, 0.4);
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-lbl {
+  font-size: 0.65rem;
+  color: #94a3b8;
+}
+
+.stat-val {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.stat-val small {
+  font-size: 0.68rem;
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* Cột 2 & 3: Compact Telemetry Grids */
+.compact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.compact-grid .telemetry-box {
+  padding: 8px 10px;
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 6px;
+  border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.compact-grid .telemetry-box.full-width {
+  grid-column: span 2;
+}
+
+.compact-grid .telemetry-lbl {
+  font-size: 0.7rem;
+  color: #94a3b8;
+}
+
+.compact-grid .telemetry-val {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.compact-grid .telemetry-val.highlight {
+  color: #38bdf8;
+}
+
+.compact-grid .telemetry-sub {
+  font-size: 0.68rem;
+  color: #64748b;
+  margin-top: 1px;
+}
+
+.compact-angles {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.compact-angles .angle-badge {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  background: rgba(30, 41, 59, 0.7);
+  border-radius: 4px;
+  font-size: 0.72rem;
+}
+
+.compact-angles .angle-badge strong {
+  font-size: 0.82rem;
+}
+
+.compact-liveness-toggle {
+  padding: 8px 10px;
+}
+
+.compact-liveness-toggle .toggle-switch-label input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+}
+
+.compact-liveness-toggle .toggle-info strong {
+  font-size: 0.8rem;
+}
+
+.compact-liveness-toggle .toggle-info span {
+  font-size: 0.7rem;
+}
+
+/* Cột 3: Antispoof & Thresholds */
+.compact-metric-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.compact-metric-row .metric-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: #cbd5e1;
+}
+
+.compact-track {
+  height: 8px;
+  border-radius: 4px;
+}
+
+.compact-thresholds {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.compact-thresholds .threshold-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.compact-thresholds .threshold-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.compact-thresholds .threshold-label-row strong {
+  color: #38bdf8;
+}
+
+.compact-thresholds input[type="range"] {
+  height: 4px;
+  accent-color: #38bdf8;
+}
+
+/* Cột 3: Security Audit Checklist & Verdict */
+.security-audit-card {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.audit-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: space-between;
+  overflow-y: auto;
+  padding-right: 2px;
+  flex: 1;
+}
+
+.audit-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(51, 65, 85, 0.4);
+  transition: all 0.2s ease;
+}
+
+.audit-item.pass {
+  border-color: rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.audit-item.fail {
+  border-color: rgba(239, 68, 68, 0.25);
+  background: rgba(239, 68, 68, 0.04);
+}
+
+.audit-status-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.audit-item.pass .audit-status-icon {
+  color: #34d399;
+}
+
+.audit-item.fail .audit-status-icon {
+  color: #f87171;
+}
+
+.audit-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.audit-text span {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  line-height: 1.2;
+}
+
+.audit-text small {
+  font-size: 0.68rem;
+  color: #94a3b8;
+  line-height: 1.2;
+}
+
+.audit-verdict {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(51, 65, 85, 0.5);
+  flex-shrink: 0;
+}
+
+.verdict-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.verdict-content.match {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.6);
+  color: #34d399;
+}
+
+.verdict-content.wait_blink {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.6);
+  color: #fbbf24;
+}
+
+.verdict-content.spoof {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.6);
+  color: #f87171;
+}
+
+.verdict-content.mismatch {
+  background: rgba(244, 63, 94, 0.15);
+  border-color: rgba(244, 63, 94, 0.5);
+  color: #fb7185;
+}
+
+.verdict-content.no_face {
+  background: rgba(100, 116, 139, 0.15);
+  border-color: rgba(100, 116, 139, 0.5);
+  color: #94a3b8;
+}
+
+.verdict-content.idle {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.5);
+  color: #60a5fa;
+}
+
+.verdict-content strong {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.verdict-content span {
+  display: block;
+  font-size: 0.72rem;
+  opacity: 0.88;
+}
+
+/* Nút bấm nhỏ tiện dụng */
+.btn-sm {
+  padding: 4px 10px !important;
+  font-size: 0.78rem !important;
+  gap: 5px !important;
+}
+
+/* ========================================================
+   BLOCK MODEL AI ĐANG HOẠT ĐỘNG (ACTIVE MODELS TAGS)
+   ======================================================== */
+.active-models-card {
+  padding: 8px 10px !important;
+  background: rgba(15, 23, 42, 0.75) !important;
+  border-color: rgba(56, 189, 248, 0.25) !important;
+}
+
+.models-backend-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  letter-spacing: 0.4px;
+}
+
+.active-models-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.model-pill-tag {
+  font-size: 0.67rem;
+  font-family: monospace;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  transition: all 0.2s ease;
+  user-select: none;
+  cursor: default;
+}
+
+.model-pill-tag:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: rgba(56, 189, 248, 0.55);
+  color: #7dd3fc;
+}
+
+/* BẢNG TIÊU THỤ TÀI NGUYÊN TRONG THẺ MODEL AI */
+.model-resources-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  margin-top: 6px;
+  padding-top: 5px;
+  border-top: 1px solid rgba(51, 65, 85, 0.4);
+}
+
+.resource-stat-box {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(51, 65, 85, 0.45);
+  border-radius: 6px;
+  padding: 4px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.resource-stat-box .res-label {
+  font-size: 0.64rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.resource-stat-box .res-value {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.resource-stat-box .res-value.highlight {
+  color: #38bdf8;
+}
+
+.resource-stat-box .res-sub {
+  font-size: 0.6rem;
+  color: #64748b;
+  line-height: 1.1;
+}
+
+.model-chip:hover {
+  background: rgba(30, 41, 59, 0.95);
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.model-chip.active {
+  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.model-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.model-dot.green {
+  background: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.8);
+}
+
+.model-name {
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.model-file {
+  font-size: 0.64rem;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.models-off-hint {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(51, 65, 85, 0.4);
+  font-size: 0.66rem;
+  color: #64748b;
+}
+
+.models-off-hint code {
+  color: #94a3b8;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(51, 65, 85, 0.4);
+  padding: 0 4px;
+  border-radius: 3px;
+  font-size: 0.64rem;
+}
+
+/* Compact Chips & Sliders */
+.active-models-grid.compact-chips {
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.active-models-grid.compact-chips .model-chip {
+  padding: 2px 6px;
+  font-size: 0.68rem;
+  gap: 4px;
+}
+
+.threshold-tag {
+  font-size: 0.65rem;
+  color: #64748b;
+  margin-left: auto;
+}
+
+.threshold-grid.mini-sliders {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.threshold-grid.mini-sliders .threshold-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.threshold-grid.mini-sliders input[type="range"] {
+  height: 4px;
+}
+
+/* 6 tiêu chuẩn eKYC dạng lưới 2 cột siêu gọn (3x2) */
+.audit-checklist-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+.mini-audit-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 6px;
+  border-radius: 5px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(51, 65, 85, 0.4);
+  transition: all 0.2s ease;
+}
+
+.mini-audit-chip.pass {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.08);
+  color: #34d399;
+}
+
+.mini-audit-chip.fail {
+  border-color: rgba(239, 68, 68, 0.25);
+  background: rgba(239, 68, 68, 0.05);
+  color: #94a3b8;
+}
+
+.mini-audit-chip.fail svg {
+  color: #f87171;
+}
+
+/* Verdict Box siêu gọn */
+.verdict-content.compact-verdict {
+  padding: 6px 10px !important;
+  gap: 8px !important;
+}
+
+.verdict-content.compact-verdict strong {
+  font-size: 0.76rem !important;
+  line-height: 1.2;
+}
+
+.verdict-content.compact-verdict span {
+  font-size: 0.65rem !important;
+  line-height: 1.2;
+}
+
+/* Biểu đồ Waveform siêu gọn */
+.chart-canvas-wrap.compact-canvas-wrap {
+  height: 76px !important;
+}
+
+.telemetry-stats-grid.compact-stats {
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.telemetry-stats-grid.compact-stats .stat-pill {
+  padding: 3px 6px;
+}
+
+.telemetry-stats-grid.compact-stats .stat-lbl {
+  font-size: 0.62rem;
+}
+
+.telemetry-stats-grid.compact-stats .stat-val {
+  font-size: 0.76rem;
+}
+
+/* ========================================================
+   ACTIVE LIVENESS MODE SELECTOR & HEAD TURN WIDGETS
+   ======================================================== */
+.liveness-mode-selector {
+  display: flex;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  border-radius: 6px;
+  padding: 2px;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 3px 6px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  border-radius: 4px;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.mode-btn:hover {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.mode-btn.active {
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.liveness-challenge-box {
+  padding: 6px 8px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 6px;
+}
+
+.challenge-prompt-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.challenge-instruction {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  letter-spacing: 0.2px;
+}
+
+.challenge-stage-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  font-family: monospace;
+}
+
+.challenge-yaw-sub {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+  font-size: 0.64rem;
+  color: #94a3b8;
+}
+
+.challenge-yaw-sub strong {
+  color: #38bdf8;
+}
+
+/* Banner Camera WAIT_TURN */
+.live-verification-banner.wait_turn {
+  background: rgba(56, 189, 248, 0.16);
+  border-color: rgba(56, 189, 248, 0.65);
+  color: #38bdf8;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+  animation: badgePulseAmber 1.4s infinite ease-in-out;
+}
+
+
+.telemetry-stats-grid.compact-stats .stat-val {
+  font-size: 0.76rem;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN CHO TABLET & MOBILE (<= 768px & <= 480px)
+   ============================================================ */
+
+@media (max-width: 768px) {
+  /* 1. Container & Khung tổng thể */
+  .app-container {
+    padding: 12px 10px 40px 10px;
+  }
+
+  /* Live mode: Không khóa cứng 100vh trên mobile để có thể cuộn xem telemetry & đối sánh */
+  .app-container.full-live-mode {
+    height: auto;
+    min-height: 100vh;
+    max-height: none;
+    overflow-y: auto;
+    padding: 10px 8px 36px 8px;
+    display: block;
+  }
+
+  /* 2. Header & Branding */
+  .app-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+  }
+
+  .header-brand {
+    gap: 10px;
+    align-items: center;
+  }
+
+  .logo-box {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  .header-brand h1 {
+    font-size: 1.12rem;
+    line-height: 1.25;
+  }
+
+  .subtitle {
+    font-size: 0.75rem;
+    line-height: 1.35;
+    margin-top: 2px;
+  }
+
+  .header-meta {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Status Pill & Progress Loading trên Mobile */
+  .status-pill.loading-detailed {
+    min-width: unset;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 10px;
+  }
+
+  .loading-title-row {
+    flex-wrap: wrap;
+    font-size: 0.72rem;
+    gap: 4px;
+  }
+
+  .status-pill.ready-detailed {
+    flex-wrap: wrap;
+    padding: 5px 10px;
+    gap: 5px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .ready-text {
+    font-size: 0.72rem;
+  }
+
+  .resource-pill-mini {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
+
+  .meta-divider {
+    display: none;
+  }
+
+  .fps-pill {
+    padding: 4px 10px;
+    font-size: 0.72rem;
+  }
+
+  .status-pill.status-metrics-single {
+    padding: 4px 10px;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .status-pill.status-metrics-single::-webkit-scrollbar {
+    display: none;
+  }
+
+  .single-metrics-text {
+    font-size: 0.68rem;
+  }
+
+  /* 4. Tab 1: Live Test Cockpit - Chuyển sang bố cục cuộn dọc thân thiện */
+  .inspector-grid.full-screen-grid {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+    gap: 12px;
+  }
+
+  /* Cột Camera Live đưa lên hàng đầu */
+  .inspector-grid.full-screen-grid .col-camera {
+    order: 1;
+    height: auto;
+    min-height: unset;
+    overflow: visible;
+  }
+
+  /* Cột Security & Kết quả đối sánh đặt ngay dưới Camera */
+  .inspector-grid.full-screen-grid .col-security {
+    order: 2;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* Cột Telemetry & Chỉ số đặt thứ ba */
+  .inspector-grid.full-screen-grid .col-telemetry {
+    order: 3;
+    height: auto;
+    overflow: visible;
+  }
+
+  .compact-cam-card {
+    min-height: unset;
+    height: auto;
+    flex: none;
+  }
+
+  .compact-viewport {
+    height: 48vh;
+    min-height: 260px;
+    max-height: 390px;
+    width: 100%;
+    flex: none;
+  }
+
+  .compact-footer .action-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .compact-toggles {
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+  }
+
+  .compact-matrix-card,
+  .compact-thumbs-card,
+  .compact-metrics {
+    flex: none;
+    min-height: unset;
+    overflow: visible;
+  }
+
+  .compact-matrix-list {
+    max-height: 240px;
+  }
+
+  .enrolled-all-thumbs-grid,
+  .enrolled-5thumbs-grid {
+    max-height: unset;
+    gap: 8px;
+  }
+
+  .thumb-slot {
+    width: 76px;
+    height: 76px;
+    flex: 0 0 76px;
+  }
+
+  /* 5. Camera In-HUD: Co gọn viền & tỷ lệ icon để không che khuôn mặt trên màn dọc */
+  .hud-arrow {
+    padding: 8px 12px 10px 12px;
+    border-radius: 12px;
+    font-size: 0.74rem;
+    gap: 4px;
+  }
+
+  .hud-arrow.left {
+    left: 8px;
+  }
+
+  .hud-arrow.right {
+    right: 8px;
+  }
+
+  .hud-arrow.up {
+    top: 44px;
+  }
+
+  .hud-target {
+    padding: 10px 16px 12px 16px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    gap: 4px;
+  }
+
+  .hud-arrow-icon {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .hud-content span {
+    font-size: 0.72rem;
+  }
+
+  .live-verification-banner {
+    padding: 6px 10px;
+    font-size: 0.76rem;
+  }
+
+  .liveness-mode-selector {
+    width: 100%;
+  }
+
+  /* Giảm padding camera để nhìn rộng hơn */
+  .camera-card {
+    padding: 4px;
+    border-radius: 10px;
+  }
+
+  .compact-cam-card {
+    padding: 3px;
+    border-radius: 10px;
+  }
+
+  /* 6. Tab Nạp Data Mẫu (Enroll) trên Mobile */
+  .demo-grid.enroll-side-by-side {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .demo-grid.enroll-side-by-side .viewport-wrapper {
+    aspect-ratio: 4 / 3;
+    max-height: 380px;
+    border-radius: 8px;
+  }
+
+  /* Mobile: Bên ảnh đã nạp chỉ hiện thumb */
+  .enrolled-gallery-scroll {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-height: unset;
+    padding: 2px 0;
+  }
+
+  .enrolled-gallery-card {
+    padding: 0;
+    background: transparent;
+    border: none;
+    position: relative;
+    flex: 0 0 auto;
+  }
+
+  .enrolled-gallery-card .gallery-info {
+    display: none; /* Ẩn toàn bộ thông tin chữ, chỉ hiện thumb */
+  }
+
+  .enrolled-gallery-card .gallery-thumb {
+    width: 62px;
+    height: 62px;
+    border-radius: 10px;
+    border: 2px solid #38bdf8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  }
+
+  .enrolled-gallery-card .btn-delete-item {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(239, 68, 68, 0.95);
+    color: white;
+    border: 1.5px solid #0f172a;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  }
+
+  .enrolled-gallery-card .btn-delete-item svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* 7. Tab 3: Cấu hình module & Benchmark */
+  .comparison-section {
+    padding: 10px 4px;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 10px 12px;
+    font-size: 0.78rem;
+  }
+
+  /* 8. Modals trên Mobile */
+  .modal-card {
+    width: 95vw;
+    max-width: 440px;
+    margin: 10px;
+    padding: 16px 14px;
+    border-radius: 12px;
+  }
+}
+
+/* ============================================================
+   TINH CHỈNH DÀNH RIÊNG CHO MÀN HÌNH NHỎ (<= 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+  .app-container {
+    padding: 8px 6px 30px 6px;
+  }
+
+  .header-brand h1 {
+    font-size: 0.98rem;
+  }
+
+  .subtitle {
+    display: none;
+  }
+
+  .compact-viewport {
+    height: 42vh;
+    min-height: 220px;
+  }
+
+  .camera-card {
+    padding: 2px;
+  }
+
+  .compact-cam-card {
+    padding: 2px;
+  }
+
+  .enrolled-gallery-card .gallery-thumb {
+    width: 56px;
+    height: 56px;
+  }
+
+  .hud-arrow.left {
+    left: 4px;
+  }
+
+  .hud-arrow.right {
+    right: 4px;
+  }
+
+  .hud-arrow.up {
+    top: 38px;
+  }
+
+  .hud-arrow {
+    padding: 6px 10px 8px 10px;
+    font-size: 0.7rem;
+  }
+
+  .hud-arrow-icon {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .liveness-mode-selector {
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .mode-btn {
+    padding: 5px 6px;
+    font-size: 0.72rem;
+  }
+
+  .enrolled-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .compact-angles {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .compact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .compact-grid .telemetry-box.full-width {
+    grid-column: span 1;
+  }
+}
+
+/* ============================================================
+   BỘ ĐIỀU CHỈNH THỜI GIAN CHECK & ĐỒNG HỒ ĐẾM NGƯỢC 10S
+   ============================================================ */
+
+/* 1. Bộ điều chỉnh thời gian ở Header Camera */
+.check-time-controller {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 8px;
+  padding: 3px 8px;
+}
+
+.time-ctrl-icon {
+  color: #38bdf8;
+}
+
+.time-ctrl-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.time-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.time-step-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1;
+  padding: 0;
+}
+
+.time-step-btn:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #38bdf8;
+  transform: scale(1.08);
+}
+
+.time-step-btn:active {
+  transform: scale(0.95);
+}
+
+.time-step-val {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  min-width: 26px;
+  text-align: center;
+  font-family: monospace;
+}
+
+/* 2. Dải tiến trình thời gian co dần trên nóc Camera Viewport */
+.live-countdown-top-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(15, 23, 42, 0.7);
+  z-index: 15;
+  overflow: hidden;
+}
+
+.live-countdown-top-fill {
+  height: 100%;
+  transition: width 0.08s linear;
+}
+
+.live-countdown-top-fill.normal {
+  background: linear-gradient(90deg, #38bdf8, #10b981);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.7);
+}
+
+.live-countdown-top-fill.warning {
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.8);
+}
+
+.live-countdown-top-fill.critical {
+  background: linear-gradient(90deg, #f87171, #ef4444);
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.95);
+  animation: countdownCritPulse 0.4s infinite alternate;
+}
+
+@keyframes countdownCritPulse {
+  from { opacity: 0.75; }
+  to { opacity: 1; }
+}
+
+/* 3. Thanh công cụ neo bên trong Camera: Badge Đếm ngược & Nút Đổi nhiệm vụ */
+.inside-cam-top-bar {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 14;
+  pointer-events: auto;
+}
+
+.live-timer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.live-timer-badge.checking {
+  background: rgba(15, 23, 42, 0.82);
+  border: 1.5px solid rgba(56, 189, 248, 0.6);
+  color: #e2e8f0;
+}
+
+.live-timer-badge.checking strong {
+  color: #38bdf8;
+  font-size: 0.88rem;
+  font-family: monospace;
+}
+
+.live-timer-badge.pulse-fast {
+  border-color: #ef4444 !important;
+  background: rgba(69, 10, 10, 0.88) !important;
+  color: #fca5a5 !important;
+  animation: timerFastPulse 0.5s infinite alternate ease-in-out;
+}
+
+.live-timer-badge.pulse-fast strong {
+  color: #f87171 !important;
+}
+
+@keyframes timerFastPulse {
+  from {
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+    transform: scale(1);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.85);
+    transform: scale(1.03);
+  }
+}
+
+.live-timer-badge.success {
+  background: rgba(6, 78, 59, 0.88);
+  border: 1.5px solid #10b981;
+  color: #a7f3d0;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.5);
+}
+
+.live-timer-badge.success strong {
+  color: #34d399;
+}
+
+.live-timer-badge.timeout {
+  background: rgba(69, 10, 10, 0.88);
+  border: 1.5px solid #ef4444;
+  color: #fca5a5;
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.4);
+}
+
+.live-timer-badge.timeout strong {
+  color: #f87171;
+}
+
+.live-timer-badge.idle {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: #94a3b8;
+}
+
+.timer-badge-icon {
+  color: currentColor;
+}
+
+/* Nút Đổi nhiệm vụ góc phải Camera */
+.btn-cam-retry-task {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  background: rgba(15, 23, 42, 0.82);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 999px;
+  color: #38bdf8;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.btn-cam-retry-task:hover {
+  background: rgba(2, 132, 199, 0.85);
+  color: #ffffff;
+  border-color: #38bdf8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.4);
+}
+
+.btn-cam-retry-task:active {
+  transform: translateY(0);
+}
+
+/* 4. Overlay khi HẾT THỜI GIAN (TIMEOUT) & THÀNH CÔNG (SUCCESS) */
+.session-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 18;
+  background: rgba(11, 17, 32, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: overlayFadeIn 0.25s ease-out;
+  padding: 16px;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.session-overlay-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 22px 28px 24px 28px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1.5px solid rgba(239, 68, 68, 0.5);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.65), 0 0 24px rgba(239, 68, 68, 0.2);
+  max-width: 380px;
+  width: 100%;
+}
+
+.session-overlay-card.success {
+  border-color: rgba(16, 185, 129, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.65), 0 0 24px rgba(16, 185, 129, 0.25);
+}
+
+.overlay-warn-icon {
+  color: #f87171;
+  animation: warnShake 0.6s ease-in-out;
+}
+
+.overlay-success-icon {
+  color: #34d399;
+  animation: successPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes warnShake {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+
+@keyframes successPop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.session-overlay-card h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+.session-overlay-card p {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.btn-retry-large {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+  width: 100%;
+  cursor: pointer;
+}
+
+.btn-retry-large.success {
+  background: linear-gradient(135deg, #059669, #10b981) !important;
+  border-color: #34d399 !important;
+}
+
+/* 5. Cập nhật Banner kiểm tra khi HẾT GIỜ (TIMEOUT) */
+.live-verification-banner.timeout {
+  background: rgba(220, 38, 38, 0.92) !important;
+  border: 1.5px solid #fca5a5 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.6) !important;
+  animation: timeoutPulse 1.2s infinite alternate ease-in-out;
+}
+
+@keyframes timeoutPulse {
+  from {
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+    transform: scale(1);
+  }
+  to {
+    box-shadow: 0 0 24px rgba(239, 68, 68, 0.8);
+    transform: scale(1.008);
+  }
+}
+
+/* Mobile responsive cho HUD & timer */
+@media (max-width: 600px) {
+  .check-time-controller {
+    padding: 2px 6px;
+  }
+  .time-ctrl-label {
+    display: none;
+  }
+  .inside-cam-top-bar {
+    top: 6px;
+    left: 8px;
+    right: 8px;
+  }
+  .live-timer-badge {
+    padding: 4px 10px;
+    font-size: 0.72rem;
+  }
+  .btn-cam-retry-task {
+    padding: 4px 8px;
+    font-size: 0.68rem;
+  }
+  .session-overlay-card {
+    padding: 16px 18px;
+  }
+  .session-overlay-card h3 {
+    font-size: 0.95rem;
+  }
+}
+
+/* ============================================================
+   LỊCH SỬ KIỂM ĐỊNH TỪNG LẦN (PASS / FAIL) & NÚT XUẤT DATA LOG
+   ============================================================ */
+.audit-history-card {
+  display: flex;
+  flex-direction: column;
+  max-height: 250px;
+}
+
+.history-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 6px;
+}
+
+.history-header-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+.history-count-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  margin-left: 3px;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+.history-actions-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.btn-export-log {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 6px;
+  color: #38bdf8;
+  font-size: 0.68rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.btn-export-log:hover:not(:disabled) {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #38bdf8;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(56, 189, 248, 0.4);
+}
+
+.btn-export-log:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(0.6);
+}
+
+.btn-clear-history {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-clear-history:hover {
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* Lưới ảnh mini Pass / Fail hiển thị tối thiểu 3 dòng trọn vẹn */
+.audit-thumbs-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 6px;
+  min-height: 148px;
+  max-height: 156px;
+  overflow-y: auto;
+  padding: 3px 2px;
+  margin-top: 4px;
+}
+
+.audit-thumbs-grid::-webkit-scrollbar {
+  width: 4px;
+}
+
+.audit-thumbs-grid::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 4px;
+}
+
+.audit-mini-thumb {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+  background: #0f172a;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s ease;
+  user-select: none;
+}
+
+.audit-mini-thumb.pass {
+  border: 2px solid #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.35);
+}
+
+.audit-mini-thumb.fail {
+  border: 2px solid #ef4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.35);
+}
+
+.audit-mini-thumb:hover {
+  transform: scale(1.12);
+  z-index: 5;
+}
+
+.audit-mini-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.audit-mini-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  background: #1e293b;
+}
+
+.audit-mini-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 0.55rem;
+  font-weight: 900;
+  line-height: 1;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+.audit-mini-badge.pass {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.audit-mini-badge.fail {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.audit-mini-task-tag {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 0.52rem;
+  font-weight: 700;
+  text-align: center;
+  background: rgba(15, 23, 42, 0.88);
+  color: #e2e8f0;
+  padding: 1px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: -0.2px;
+}
